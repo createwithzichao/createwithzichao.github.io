@@ -52,11 +52,13 @@
 <meta property="og:site_name" content="createwithzichao">
 <meta property="og:description" content="This post is aimed to record some scaling up papers for large-scale industrial recommenders.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://createwithzichao.github.io/Users/codewithzichao/Library/Application%20Support/typora-user-images/image-20260217204102073.png">
 <meta property="article:published_time" content="2026-02-17T08:52:35.000Z">
-<meta property="article:modified_time" content="2026-02-17T11:46:36.650Z">
+<meta property="article:modified_time" content="2026-02-17T12:45:16.847Z">
 <meta property="article:author" content="zichao">
 <meta property="article:tag" content="Scaling up">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://createwithzichao.github.io/Users/codewithzichao/Library/Application%20Support/typora-user-images/image-20260217204102073.png">
 
 <link rel="canonical" href="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/">
 
@@ -246,7 +248,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-02-17 16:52:35 / Modified: 19:46:36" itemprop="dateCreated datePublished" datetime="2026-02-17T16:52:35+08:00">2026-02-17</time>
+              <time title="Created: 2026-02-17 16:52:35 / Modified: 20:45:16" itemprop="dateCreated datePublished" datetime="2026-02-17T16:52:35+08:00">2026-02-17</time>
             </span>
 
           
@@ -270,7 +272,22 @@
         <p>This post is aimed to record some scaling up papers for large-scale industrial recommenders.</p>
 <span id="more"></span>
 
-<h2 id="TIGER"><a href="#TIGER" class="headerlink" title="TIGER"></a>TIGER</h2><h2 id="Rankmixer"><a href="#Rankmixer" class="headerlink" title="Rankmixer"></a>Rankmixer</h2><h2 id="TokenMixer-Large"><a href="#TokenMixer-Large" class="headerlink" title="TokenMixer-Large"></a>TokenMixer-Large</h2><h2 id="OneTrans"><a href="#OneTrans" class="headerlink" title="OneTrans"></a>OneTrans</h2><h2 id="HyFormer"><a href="#HyFormer" class="headerlink" title="HyFormer"></a>HyFormer</h2>
+<h2 id="TIGER"><a href="#TIGER" class="headerlink" title="TIGER"></a>TIGER</h2><ul>
+<li><p>论文链接：<a target="_blank" rel="noopener" href="https://papers.neurips.cc/paper_files/paper/2023/file/20dcab0f14046a5c6b02b61da9f13229-Paper-Conference.pdf">https://papers.neurips.cc/paper_files/paper/2023/file/20dcab0f14046a5c6b02b61da9f13229-Paper-Conference.pdf</a></p>
+</li>
+<li><p>参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1897030256965177585">https://zhuanlan.zhihu.com/p/1897030256965177585</a></p>
+</li>
+<li><img src="/Users/codewithzichao/Library/Application Support/typora-user-images/image-20260217204102073.png" alt="image-20260217204102073" style="zoom:150%;" />
+</li>
+<li><p>两部分</p>
+<ul>
+<li>语义生成：拿到item的标题、文本等信息，通过T5模型拿到embedding，作为生成semantic id的input，通过通过RQVAE拿到semantic id，为了出现codebook崩溃(大多数的item映射到少数的sid上)，采用kmeans进行初始化；</li>
+<li>![image-20260217204305609](&#x2F;Users&#x2F;codewithzichao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20260217204305609.png)</li>
+<li>生成式推荐：对用户的历史item序列，转化为sid序列，预测下一个item所属的sid。</li>
+</ul>
+</li>
+</ul>
+<h2 id="RankMixer"><a href="#RankMixer" class="headerlink" title="RankMixer"></a>RankMixer</h2><h2 id="TokenMixer-Large"><a href="#TokenMixer-Large" class="headerlink" title="TokenMixer-Large"></a>TokenMixer-Large</h2><h2 id="OneTrans"><a href="#OneTrans" class="headerlink" title="OneTrans"></a>OneTrans</h2><h2 id="HyFormer"><a href="#HyFormer" class="headerlink" title="HyFormer"></a>HyFormer</h2>
     </div>
 
     
@@ -349,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TIGER"><span class="nav-number">1.</span> <span class="nav-text">TIGER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rankmixer"><span class="nav-number">2.</span> <span class="nav-text">Rankmixer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TokenMixer-Large"><span class="nav-number">3.</span> <span class="nav-text">TokenMixer-Large</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OneTrans"><span class="nav-number">4.</span> <span class="nav-text">OneTrans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyFormer"><span class="nav-number">5.</span> <span class="nav-text">HyFormer</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TIGER"><span class="nav-number">1.</span> <span class="nav-text">TIGER</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RankMixer"><span class="nav-number">2.</span> <span class="nav-text">RankMixer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TokenMixer-Large"><span class="nav-number">3.</span> <span class="nav-text">TokenMixer-Large</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OneTrans"><span class="nav-number">4.</span> <span class="nav-text">OneTrans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyFormer"><span class="nav-number">5.</span> <span class="nav-text">HyFormer</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
