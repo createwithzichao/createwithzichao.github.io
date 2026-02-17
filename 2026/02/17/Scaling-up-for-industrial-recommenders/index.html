@@ -53,10 +53,9 @@
 <meta property="og:description" content="This post is aimed to record some scaling up papers for large-scale industrial recommenders. ^-^">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/tiger.png">
-<meta property="og:image" content="https://createwithzichao.github.io/Scaling-up-for-industrial-recommenders/tiger.png">
-<meta property="og:image" content="https://createwithzichao.github.io/Scaling-up-for-industrial-recommenders/rqvae.png">
+<meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rqvae.png">
 <meta property="article:published_time" content="2026-02-17T08:52:35.000Z">
-<meta property="article:modified_time" content="2026-02-17T16:33:33.443Z">
+<meta property="article:modified_time" content="2026-02-17T16:38:23.740Z">
 <meta property="article:author" content="zichao">
 <meta property="article:tag" content="Scaling up">
 <meta name="twitter:card" content="summary">
@@ -256,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-18 00:33:33" itemprop="dateModified" datetime="2026-02-18T00:33:33+08:00">2026-02-18</time>
+                <time title="Modified: 2026-02-18 00:38:23" itemprop="dateModified" datetime="2026-02-18T00:38:23+08:00">2026-02-18</time>
               </span>
 
           
@@ -285,14 +284,13 @@
 </li>
 <li><p>参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1897030256965177585">https://zhuanlan.zhihu.com/p/1897030256965177585</a></p>
 </li>
-<li><img src="/2026/02/17/Scaling-up-for-industrial-recommenders/tiger.png" class="" title="tiger"></li>
-<li><p><img src="/./Scaling-up-for-industrial-recommenders/tiger.png"></p>
+<li><p><img src="./tiger.png" alt="Tiger模型图"></p>
 </li>
-<li><p>两部分</p>
+<li><p><strong>模型主体</strong></p>
 <ul>
-<li>语义生成：拿到item的标题、文本等信息，通过T5模型拿到embedding，作为生成semantic id的input，通过通过RQVAE拿到semantic id，为了出现codebook崩溃(大多数的item映射到少数的sid上)，采用kmeans进行初始化；</li>
-<li><img src="/Scaling-up-for-industrial-recommenders/rqvae.png"></li>
-<li>生成式推荐：对用户的历史item序列，转化为sid序列，预测下一个item所属的sid。</li>
+<li><strong>语义生成</strong>：拿到item的标题、文本等信息，通过T5模型拿到embedding，作为生成semantic id的input，通过通过RQVAE拿到semantic id，为了出现codebook崩溃(大多数的item映射到少数的sid上)，采用kmeans进行初始化；</li>
+<li><img src="./rqvae.png" alt="RQVAE"></li>
+<li><strong>生成式推荐</strong>：对用户的历史item序列，转化为sid序列，预测下一个item所属的sid。</li>
 </ul>
 </li>
 </ul>
