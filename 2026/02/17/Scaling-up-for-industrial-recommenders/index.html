@@ -56,7 +56,7 @@
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rqvae.png">
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rankmixer.png">
 <meta property="article:published_time" content="2026-02-17T08:52:35.000Z">
-<meta property="article:modified_time" content="2026-02-18T08:41:51.138Z">
+<meta property="article:modified_time" content="2026-02-18T08:44:21.545Z">
 <meta property="article:author" content="zichao">
 <meta property="article:tag" content="Scaling up">
 <meta name="twitter:card" content="summary">
@@ -256,7 +256,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-18 16:41:51" itemprop="dateModified" datetime="2026-02-18T16:41:51+08:00">2026-02-18</time>
+                <time title="Modified: 2026-02-18 16:44:21" itemprop="dateModified" datetime="2026-02-18T16:44:21+08:00">2026-02-18</time>
               </span>
 
           
@@ -303,7 +303,7 @@
 </li>
 <li><p><img src="./rankmixer.png"></p>
 <ul>
-<li><p><strong>整体框架：</strong>输入$e_{input}$被切分为$T$个token：${x_1,x_2,..,x_T}$，堆叠L层的rankmixer blocks(=tokenmixing+pertoken-ffn)，如下：<br>$$<br>S_{n-1}=LayerNorm(TokenMixing(X_{n-1})+X_{n-1}), \<br>\<br>X_n=LN(PertokenFFN(S_{n-1}) + S_{n-1})<br>$$</p>
+<li><p><strong>整体框架：</strong>输入$e_{input}$被切分为$T$个token：${x_1,x_2,..,x_T}$，堆叠L层的rankmixer blocks(=tokenmixing+pertoken-ffn)，如下：<br>$$<br>S_{n-1}=LayerNorm(TokenMixing(X_{n-1})+X_{n-1}), \<br>&lt;\br&gt; \<br>X_n=LN(PertokenFFN(S_{n-1}) + S_{n-1})<br>$$</p>
 </li>
 <li><p><strong>Feature Tokenization</strong></p>
 <ul>
