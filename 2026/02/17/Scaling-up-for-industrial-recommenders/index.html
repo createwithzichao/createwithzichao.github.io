@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rankmixer.png">
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rankmixer-ablation.png">
 <meta property="article:published_time" content="2026-02-17T08:52:35.000Z">
-<meta property="article:modified_time" content="2026-02-18T09:14:48.336Z">
+<meta property="article:modified_time" content="2026-02-18T09:17:19.299Z">
 <meta property="article:author" content="zichao">
 <meta property="article:tag" content="Scaling up">
 <meta name="twitter:card" content="summary">
@@ -257,7 +257,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-18 17:14:48" itemprop="dateModified" datetime="2026-02-18T17:14:48+08:00">2026-02-18</time>
+                <time title="Modified: 2026-02-18 17:17:19" itemprop="dateModified" datetime="2026-02-18T17:17:19+08:00">2026-02-18</time>
               </span>
 
           
@@ -349,11 +349,12 @@
 </li>
 <li><p><strong>SparseMoe</strong></p>
 <ul>
-<li><p><strong>目的：</strong> <strong>使用sparsemoe替换PFFN，能进一步提升模型容量。</strong>但是传统SparseMoe有两个问题：**(1) 统一的topk专家routing机制：<strong>会平等地对待所有的token，但是信息量高的token需要更多的计算资源，这样做会阻碍模型捕捉不同token之间的差异；</strong>(2) 专家训练不充分：**per-token FFN已经引入大量参数，如果再引入不共享的专家网络，会让参数进一步爆炸，进而使得routing imbalance，让部分专家训练不充分。</p>
+<li><p><strong>目的：</strong> <strong>使用sparsemoe替换PFFN，能进一步提升模型容量。</strong>但是传统SparseMoe有两个问题：**(1) 统一的topk专家routing机制：<strong>会平等地对待所有的token，但是信息量高的token需要更多的计算资源，这样做会阻碍模型捕捉不同token之间的差异；</strong>(2) 专家训练不充分**：per-token FFN已经引入大量参数，如果再引入不共享的专家网络，会让参数进一步爆炸，进而使得routing imbalance，让部分专家训练不充分。</p>
 </li>
 <li><p><strong>做法：</strong></p>
 <ul>
-<li><p><strong>ReLU Routing。</strong>采用relu门控机制+L1正则来替换掉topk+softmax的做法。对于token $s_i$，expert $e_{i,j}(<em>)$，router $h(</em>)$，如下：<br>$$<br>G_{i,j}=RELU(h(s_i)), \<br>v_i = \sum_{j=1}^{N_e}G_{i,j}e_{i,j}(s_i)<br>$$<br>其中，$N_e$是每个token的专家网络数量，$N_t$a是token数量。$\lambda$来控制激活专家的比例。如下：<br>$$<br>L = L_{task} + \lambda * L_{reg}, \<br>L_{reg} = \sum_{i=1}^{N_t}\sum_{j=1}^{N_e}G_{i,j}<br>$$</p>
+<li><p><strong>ReLU Routing。</strong>采用relu门控机制+L1正则来替换掉topk+softmax的做法。对于token $s_i$，expert $e_{i,j}(<em>)$，router $h(</em>)$，如下：<br>$$<br>G_{i,j}=RELU(h(s_i)), \<br>v_i = \sum_{j=1}^{N_e}G_{i,j}e_{i,j}(s_i)<br>$$</p>
+<p>其中，$N_e$ 是每个token的专家网络数量，$N_t$ 是token数量。$\lambda$ 来控制激活专家的比例。如下：<br>$$<br>L = L_{task} + \lambda * L_{reg}, \<br>L_{reg} = \sum_{i=1}^{N_t}\sum_{j=1}^{N_e}G_{i,j}<br>$$</p>
 </li>
 <li><p><strong>Dense-training / Sparse-inference</strong>。两个router：$h_{train},h_{infer}$，$L_{reg}$仅仅在infer的时候用到；训练时，$h_{train},h_{infer}$都会被更新，从而防止专家训练不充分问题。实验里，$\lambda = 1/8$与$\lambda = 1$的AUC差别不大，但是推理时的开销大幅减少。</p>
 </li>
@@ -363,9 +364,9 @@
 <p><strong>蛮有意思。</strong></p>
 <p><img src="./rankmixer-ablation.png"></p>
 </li>
-<li><p>*<em>背景知识：</em></p>
+<li><p><strong>背景知识：</strong></p>
 <ul>
-<li><strong>稀疏激活：</strong>每个token只需要激活少量moe；</li>
+<li><strong>稀疏激活：</strong>每个token只需要激活少量moe</li>
 <li><strong>负载均衡：</strong>通过路由机制分配tokens到不同专家</li>
 <li><strong>加权组合：</strong>不同专家贡献按权重组合</li>
 <li><strong>并行计算：</strong>按专家维度并行处理，提高效率</li>
