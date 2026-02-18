@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rankmixer.png">
 <meta property="og:image" content="https://createwithzichao.github.io/2026/02/17/Scaling-up-for-industrial-recommenders/rankmixer-ablation.png">
 <meta property="article:published_time" content="2026-02-17T08:52:35.000Z">
-<meta property="article:modified_time" content="2026-02-18T09:19:22.050Z">
+<meta property="article:modified_time" content="2026-02-18T09:20:20.045Z">
 <meta property="article:author" content="zichao">
 <meta property="article:tag" content="Scaling up">
 <meta name="twitter:card" content="summary">
@@ -257,7 +257,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-18 17:19:22" itemprop="dateModified" datetime="2026-02-18T17:19:22+08:00">2026-02-18</time>
+                <time title="Modified: 2026-02-18 17:20:20" itemprop="dateModified" datetime="2026-02-18T17:20:20+08:00">2026-02-18</time>
               </span>
 
           
@@ -353,7 +353,7 @@
 </li>
 <li><p><strong>做法：</strong></p>
 <ul>
-<li><p><strong>ReLU Routing。</strong>采用RELU门控机制+L1正则来替换掉topk+softmax的做法。对于token记作 $s_i$ ，expert记作  $e_{i,j}(<em>)$ ，router记作 $h(</em>)$ ，如下：</p>
+<li><p><strong>ReLU Routing。</strong>采用RELU门控机制+L1正则来替换掉topk+softmax的做法。对于token记作 $s_i$ ，expert记作  $e_{i,j}()$ ，router记作 $h()$ ，如下：</p>
 <p>$$<br>G_{i,j}=RELU(h(s_i)), \<br>v_i = \sum_{j=1}^{N_e}G_{i,j}e_{i,j}(s_i)<br>$$</p>
 <p>其中，$N_e$ 是每个token的专家网络数量，$N_t$ 是token数量。$\lambda$ 来控制激活专家的比例。如下：<br>$$<br>L = L_{task} + \lambda * L_{reg}, \<br>L_{reg} = \sum_{i=1}^{N_t}\sum_{j=1}^{N_e}G_{i,j}<br>$$</p>
 </li>
